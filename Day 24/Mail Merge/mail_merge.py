@@ -4,12 +4,6 @@
 
 # Mail merge script
 
-# TODO: Create a letter using starting_letter.txt
-# for each name in invited_names.txt
-# Replace the [name] placeholder with the actual name.
-# Save the letters in the folder "ReadyToSend".
-
-
 STARTING_LETTER_PATH = "./Input/Letters/starting_letter.txt"
 NAME_LIST_PATH = "./Input/Names/invited_names.txt"
 
