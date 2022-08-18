@@ -19,7 +19,7 @@ account_sid = "YOUR ACCOUNT SID"
 auth_token = os.environ.get("AUTH_TOKEN")
 
 URL = "https://api.openweathermap.org/data/2.5/onecall"
-API_KEY = "975ecc0d0dcb9698bd86c1285f849af0"
+API_KEY = "OWM_API_KEY"
 MY_LAT = -25.424809
 MY_LONG = -49.245135
 PARAMS = {
