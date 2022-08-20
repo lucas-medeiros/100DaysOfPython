@@ -10,7 +10,7 @@ import requests
 # NUTRITIONIX PARAMETERS
 NUTRITIONIX_USERNAME = "zedlucas"
 NUTRITIONIX_APP_ID = "adf561e6"
-NUTRITIONIX_APP_KEY = "9c27dbff476afad1da7f73a8f41bece3"
+NUTRITIONIX_APP_KEY = "YOUR_API_KEY_HERE"
 NUTRITIONIX_REMOTE_USER_ID = "0"
 
 NUTRITIONIX_ENDPOINT = "https://trackapi.nutritionix.com/v2/natural/exercise"
