@@ -19,7 +19,7 @@ STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 PRICE_FLOAT = 5
 
-STOCK_API_KEY = "IRZ95GSC1M57JF5I"
+STOCK_API_KEY = "YOUR_API_KEY_HERE"
 STOCK_URL = "https://www.alphavantage.co/query"
 STOCK_PARAMS = {
     "function": "TIME_SERIES_DAILY",
@@ -31,7 +31,7 @@ STOCK_PARAMS = {
 
 ARTICLES_COUNT = 3
 
-NEWS_API_KEY = "1e18b2ac48e34aa285b4d823bcf01b8a"
+NEWS_API_KEY = "YOUR_API_KEY_HERE"
 NEWS_URL = "https://newsapi.org/v2/everything"
 NEWS_PARAMS = {
     "q": COMPANY_NAME,
