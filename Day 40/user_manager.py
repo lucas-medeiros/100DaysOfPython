@@ -47,7 +47,10 @@ class UserManager:
 
     def get_customer_emails(self):
         customers_endpoint = SHEETY_ENDPOINT
-        response = requests.get(customers_endpoint)
-        data = response.json()
-        self.data = data["users"]
+        try:
+            response = requests.get(customers_endpoint, headers=SHEETY_HEADERS)
+            data = response.json()
+            self.data = data["users"]
+        except KeyError:
+            print(f"KeyError:\n {response.text}")
         return self.data
