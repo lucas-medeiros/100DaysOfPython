@@ -8,6 +8,7 @@
 # want to use your primary account for this project, feel free to set up a new LinkedIn account.
 
 from selenium import webdriver
+from selenium.common import NoSuchElementException
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -40,22 +41,48 @@ password_input = driver.find_element(By.ID, "password")
 password_input.send_keys(PASSWORD)
 password_input.send_keys(Keys.ENTER)
 
-# Locate the apply button
-sleep(1)
-apply_button = driver.find_element(By.CSS_SELECTOR, ".jobs-s-apply button")
-apply_button.click()
+sleep(3)
+all_listings = driver.find_elements(By.CSS_SELECTOR, ".job-card-container--clickable")
 
-# If application requires phone number and the field is empty, then fill in the number.
-sleep(1)
-phone = driver.find_element(By.CLASS_NAME, "fb-single-line-text__input")
-if phone.text == "":
-    phone.send_keys(PHONE)
+for listing in all_listings:
+    print("called")
+    listing.click()
+    sleep(2)
 
-# Submit the application
-submit_button = driver.find_element(By.CSS_SELECTOR, "footer button")
-submit_button.click()
+    # Try to locate the apply button, if it can't locate then skip the job.
+    try:
+        apply_button = driver.find_elements(By.CSS_SELECTOR, ".jobs-s-apply button")
+        apply_button.click()
+        sleep(2)
 
-# Quit
-sleep(1)
-print("Application submitted")
+        # If phone field is empty, then fill your phone number.
+        phone = driver.find_element(By.CLASS_NAME, "fb-single-line-text__input")
+        if phone.text == "":
+            phone.send_keys(PHONE)
+
+        submit_button = driver.find_element(By.CSS_SELECTOR, "footer button")
+
+        # If the submit_button is a "Next" button, then this is a multistep application, so skip.
+        if submit_button.get_attribute("data-control-name") == "continue_unify":
+            close_button = driver.find_element(By.CLASS_NAME, "artdeco-modal__dismiss")
+            close_button.click()
+            sleep(2)
+            discard_button = driver.find_elements(By.CLASS_NAME, "artdeco-modal__confirm-dialog-btn")[1]
+            discard_button.click()
+            print("Complex application, skipped.")
+            continue
+        else:
+            submit_button.click()
+
+        # Once application completed, close the pop-up window.
+        sleep(1)
+        close_button = driver.find_element(By.CLASS_NAME, "artdeco-modal__dismiss")
+        close_button.click()
+
+    # If already applied to job or job is no longer accepting applications, then skip.
+    except NoSuchElementException:
+        print("No application button, skipped.")
+        continue
+
+sleep(3)
 driver.quit()
