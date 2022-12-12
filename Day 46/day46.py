@@ -14,6 +14,7 @@ URL = "https://www.billboard.com/charts/hot-100"
 SPOTIPY_CLIENT_ID = "YOUR_CLIENT_ID"
 SPOTIPY_CLIENT_SECRET = "YOUR_CLIENT_SECRET"
 SPOTIPY_REDIRECT_URI = "http://example.com"
+SPOTIPY_REDIRECT_URI = "http://example.com"
 SPOTIPY_SCOPE = "playlist-modify-private"
 
 
