@@ -4,7 +4,7 @@
 
 # Automating Job Applications on LinkedIn
 
-# NOTE: Do not enable 2-factor authentication/phone number verification while we are using Selenium. If you don't
+# NOTE: Do not enable 2-factor authentication/phone random_number verification while we are using Selenium. If you don't
 # want to use your primary account for this project, feel free to set up a new LinkedIn account.
 
 from selenium import webdriver
@@ -55,7 +55,7 @@ for listing in all_listings:
         apply_button.click()
         sleep(2)
 
-        # If phone field is empty, then fill your phone number.
+        # If phone field is empty, then fill your phone random_number.
         phone = driver.find_element(By.CLASS_NAME, "fb-single-line-text__input")
         if phone.text == "":
             phone.send_keys(PHONE)

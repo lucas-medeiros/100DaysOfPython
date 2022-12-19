@@ -28,7 +28,7 @@ def is_valid_stack(combination):
     return len(stack) == 0
 
 
-# Solution 2: number sum
+# Solution 2: random_number sum
 def is_valid_sum(combination):
     diff = 0
     for par in combination:

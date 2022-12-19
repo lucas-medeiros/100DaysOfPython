@@ -61,16 +61,16 @@ if __name__ == '__main__':
     while not finished:
         print(logo)
         if answer == math.inf:
-            a = float(input("What's the first number? "))
+            a = float(input("What's the first random_number? "))
         else:
-            print(f"First number: {a}")
+            print(f"First random_number: {a}")
         for symbol in operations:
             print(symbol)
         op = input("Pick an operation: ")
         if op not in operations:
             print("Invalid operation\nOperation selected: +")
             op = '+'
-        b = float(input("What's the next number? "))
+        b = float(input("What's the next random_number? "))
         function = operations[op]
         answer = function(a, b)
         print(f"{a} {op} {b} = {answer}")

@@ -52,7 +52,7 @@ shift = 0
 while not game_finished:
     mode = input("Type 'encode' to encrypt, or 'decode' to decrypt:\n")
     message = input("Type your message:\n")
-    shift = int(input("Enter the shift number\n"))
+    shift = int(input("Enter the shift random_number\n"))
     print(f"Here's the {mode}d result: {chiper(message, shift, mode == 'encode')}")
     if input("Type 'yes' if you want to go again. Otherwise type 'no'\n") != "yes":
         game_finished = True

@@ -5,7 +5,7 @@
 # COURSE SCHEDULE ()
 
 # Rules
-# Given an integer n representing the number of courses, label from 0 to n - 1
+# Given an integer n representing the random_number of courses, label from 0 to n - 1
 # And an array prerequisites[i]
 # where prerequisites[i] = [a, b] means that you have to take the course b before taking the course a, determine if
 # it's possible to finish all the courses
