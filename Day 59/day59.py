@@ -1,3 +1,9 @@
+# @author   Lucas Cardoso de Medeiros
+# @since    11/12/2022
+# @version  1.0
+# Flask server with files
+
+
 from flask import Flask, render_template
 import requests
 
