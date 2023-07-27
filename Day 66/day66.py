@@ -2,7 +2,7 @@
 # @since    25/07/2023
 # @version  1.0
 
-# RESTFUL API
+# RESTFUL API - London Cafes
 
 
 from flask import Flask, jsonify, render_template, request
@@ -13,11 +13,9 @@ app = Flask(__name__)
 
 # Connect to Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
-# app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy()
 db.init_app(app)
-
 
 API_KEY = "TopSecretAPIKey"
 
