@@ -1,9 +1,9 @@
 # @author   Lucas Cardoso de Medeiros
-# @since    28/07/2023
+# @since    31/07/2023
 # @version  1.0
 
 
-# Blog Authentication - Day 69 - Advanced - Blog Capstone Project Part 4 - Adding Users
+# Blog Authentication Deploy
 
 
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
