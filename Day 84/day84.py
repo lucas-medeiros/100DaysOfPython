@@ -8,8 +8,7 @@ The game should be playable in the command line just like the Blackjack game we 
 
 import random
 
-
-PLAYERS_SYMBOLS = ['X', 'O']
+PLAYERS = ['X', 'O']
 BOARD = [['-', '-', '-'],
          ['-', '-', '-'],
          ['-', '-', '-']]
@@ -56,13 +55,9 @@ def print_board():
 
 def get_ai_move():
     """AI player make a random move on any of the available positions"""
-    available_positions = [(row, col) for row in range(len(BOARD)) for col in range(len(BOARD[0]))
-                           if BOARD[row][col] not in PLAYERS_SYMBOLS]
-
-    if available_positions:
-        return random.choice(available_positions)
-    else:
-        return 0, 0
+    available_moves = [(row, col) for row in range(len(BOARD)) for col in range(len(BOARD[0]))
+                       if BOARD[row][col] not in PLAYERS]
+    return random.choice(available_moves)
 
 
 def get_move(player_symbol, is_ai):
@@ -75,7 +70,7 @@ def get_move(player_symbol, is_ai):
         else:
             row_move, column_move = get_ai_move()
 
-        if BOARD[row_move][column_move] in PLAYERS_SYMBOLS:
+        if BOARD[row_move][column_move] in PLAYERS:
             print("Invalid move, please enter again...")
         else:
             BOARD[row_move][column_move] = player_symbol
