@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Cafe</title>
+</head>
+<body>
+    <h1>Search Cafe</h1>
+    <form action="/search" method="GET">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="loc" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if cafes %}
+    <h2>Search Result:</h2>
+    <ul>
+        {% for cafe in cafes %}
+        <li>
+            <h3>{{ cafe.name }}</h3>
+            <p>Location: {{ cafe.location }}</p>
+            <p>Seats: {{ cafe.seats }}</p>
+            <p>WiFi: {{ cafe.has_wifi }}</p>
+            <p>Sockets: {{ cafe.has_sockets }}</p>
+            <p>Price: {{ cafe.coffee_price }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>

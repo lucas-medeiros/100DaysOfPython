@@ -1,0 +1,38 @@
+/* static/styles.css */
+
+/* Style for the body */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+/* Style for the header */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+    color: #007bff;
+}
+
+/* Style for the menu */
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+li {
+    display: inline;
+    margin: 10px;
+}
+
+/* Style for links */
+a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Style for links on hover */
+a:hover {
+    text-decoration: underline;
+}

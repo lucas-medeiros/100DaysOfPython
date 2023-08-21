@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe App</title>
+
+    <!-- Add Bootstrap CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to the Cafe & Wi-Fi App</h1>
+
+    <h2>Menu:</h2>
+    <ul>
+        <li><a href="{{ url_for('get_all') }}">All Cafes</a></li>
+        <li><a href="{{ url_for('add') }}">Add New Cafe</a></li>
+        <li><a href="{{ url_for('search') }}">Search Cafe</a></li>
+        <li><a href="{{ url_for('get_random') }}">Random Cafe</a></li>
+    </ul>
+</body>
+</html>
