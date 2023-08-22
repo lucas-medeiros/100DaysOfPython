@@ -1,0 +1,8 @@
+<style>
+    /* Style for the input and button container */
+    .list-group-item > div {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+</style>

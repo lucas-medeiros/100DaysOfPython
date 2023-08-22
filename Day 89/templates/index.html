@@ -1,0 +1,190 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">TODO List</h1>
+
+    <ul class="list-group">
+        <li id="new-task" class="list-group-item d-flex justify-content-between align-items-center">
+            <span>
+                <input type="text" class="form-control" id="new-description-input" style="width: 500px;" onkeypress="handleKeyPress(event)" autofocus>
+            </span>
+            <div>
+                <button class="btn btn-primary btn-sm" onclick="addTask()">
+                    Add task
+                </button>
+            </div>
+        </li>
+        {% for task in tasks %}
+            <li id="task-{{ task.id }}" class="list-group-item d-flex justify-content-between align-items-center">
+                <span id="task-description-{{ task.id }}">
+                    {% if task.is_done %}
+                        <s>{{ task.description }}</s>
+                    {% else %}
+                        {{ task.description }}
+                    {% endif %}
+                </span>
+                <div>
+                    <input type="datetime-local" id="due-date-{{ task.id }}" value="{{ task.due_date|default('') }}" onchange="updateDueDate({{ task.id }})">
+
+                    <button id="favorite-button-{{ task.id }}" class="btn btn-sm {{ 'btn-warning' if task.is_favorite else 'btn-secondary' }} me-1" onclick="toggleFavorite({{ task.id }})">
+                        <i class="bi-star"></i>
+                    </button>
+
+                    <button id="done-button-{{ task.id }}" class="btn btn-sm {{ 'btn-success' if task.is_done else 'btn-secondary' }} me-1" onclick="markDone({{ task.id }})">
+                        <i class="bi-check"></i>
+                    </button>
+
+                    <input type="color" id="color-picker-{{ task.id }}" value="{{ task.color_tag|default('#ffffff') }}" oninput="updateColorTag({{ task.id }})">
+
+                    <button class="btn btn-sm btn-danger me-1" onclick="deleteTask({{ task.id }})">
+                        <i class="bi-trash"></i>
+                    </button>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            addTask();
+            event.preventDefault(); // Prevent form submission
+        }
+    }
+
+    function addTask() {
+        const descriptionInput = document.getElementById('new-description-input');
+        const description = descriptionInput.value.trim();
+
+        if (description) {
+            fetch('/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `description=${encodeURIComponent(description)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                location.reload();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+    }
+
+    function toggleFavorite(taskId) {
+        fetch(`/toggle-favorite/${taskId}`, { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                updateFavoriteButton(taskId, data.response.task.is_favorite);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    function updateFavoriteButton(taskId, isFavorite) {
+        const favoriteButton = document.querySelector(`#favorite-button-${taskId}`);
+        favoriteButton.classList.remove('btn-warning', 'btn-secondary');
+        favoriteButton.classList.add(isFavorite ? 'btn-warning' : 'btn-secondary');
+    }
+
+    function markDone(taskId) {
+        fetch(`/mark-done/${taskId}`, { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                updateDoneButton(taskId, data.response.task.is_done);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    function updateDoneButton(taskId, isDone) {
+        const doneButton = document.querySelector(`#done-button-${taskId}`);
+        doneButton.classList.remove('btn-success', 'btn-secondary');
+        doneButton.classList.add(isDone ? 'btn-success' : 'btn-secondary');
+
+        const taskDescription = document.querySelector(`#task-description-${taskId}`);
+        if (isDone)
+            taskDescription.innerHTML = `<s>${taskDescription.textContent}</s>`;
+        else
+            taskDescription.innerHTML = taskDescription.textContent;
+    }
+
+    function deleteTask(taskId) {
+        if (confirm("Are you sure you want to delete this task?")) {
+            fetch(`/delete/${taskId}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    const deletedTaskElement = document.getElementById(`task-${taskId}`);
+                    deletedTaskElement.remove();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }
+
+    function updateDueDate(taskId) {
+        const dueDateInput = document.getElementById(`due-date-${taskId}`);
+        const newDueDate = dueDateInput.value;
+
+        fetch(`/update-due-date/${taskId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `new_due_date=${encodeURIComponent(newDueDate)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+
+    function updateColorTag(taskId) {
+        const colorPickerInput = document.getElementById(`color-picker-${taskId}`);
+        const newColorTag = colorPickerInput.value;
+
+        fetch(`/update-color-tag/${taskId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `new_color_tag=${encodeURIComponent(newColorTag)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+</script>
+</body>
+</html>
