@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Anime List API</title>
+</head>
+<body>
+    <h1>My Anime List API</h1>
+    <ul>
+        <li><a href="{{ url_for('get_by_id', show_id=1) }}">Get anime data by id</a></li>
+        <li><a href="{{ url_for('get_full_by_id', show_id=1) }}">Get full anime data by id</a></li>
+        <li><a href="{{ url_for('get_characters', show_id=1) }}">Get characters</a></li>
+        <li><a href="{{ url_for('get_staff', show_id=1) }}">Get staff</a></li>
+        <li><a href="{{ url_for('get_episodes', show_id=1) }}">Get episodes</a></li>
+        <li><a href="{{ url_for('get_news', show_id=1) }}">Get news</a></li>
+        <li><a href="{{ url_for('get_pictures', show_id=1) }}">Get pictures</a></li>
+        <li><a href="{{ url_for('get_statistics', show_id=1) }}">Get statistics</a></li>
+        <li><a href="{{ url_for('get_reviews', show_id=1) }}">Get reviews</a></li>
+        <li><a href="{{ url_for('get_themes', show_id=1) }}">Get themes</a></li>
+        <li><a href="{{ url_for('search_anime', q='One Piece') }}">Search anime by name</a></li>
+        <li><a href="{{ url_for('search_character', q='Luffy') }}">Search character by name</a></li>
+        <li><a href="{{ url_for('list_genres') }}">List all anime genres</a></li>
+        <li><a href="{{ url_for('search_producers') }}">List all producers</a></li>
+        <li><a href="{{ url_for('get_random_anime') }}">Get a random anime to watch</a></li>
+        <li><a href="{{ url_for('get_random_character') }}">Get random character</a></li>
+        <li><a href="{{ url_for('get_recent_recommendations') }}">Get recent recommendations</a></li>
+        <li><a href="{{ url_for('get_airing_shows') }}">Get airing anime on current season</a></li>
+        <li><a href="{{ url_for('get_upcoming_season') }}">Get upcoming season</a></li>
+    </ul>
+</body>
+</html>
