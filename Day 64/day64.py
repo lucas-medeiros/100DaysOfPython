@@ -14,13 +14,13 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import requests
 
-API_KEY = "35885e6820bba6e5509cd4dd7197060f"
+API_KEY = "your_api_key"
 SEARCH_MOVIE_API_URL = "https://api.themoviedb.org/3/search/movie"
 MOVIE_DETAILS_API_URL = "https://api.themoviedb.org/3/movie"
 MOVIE_DB_IMAGE_URL = "https://image.tmdb.org/t/p/w500"
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///new-movies-collection.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
