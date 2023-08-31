@@ -65,7 +65,7 @@ def create_db():
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = '59f8f539-2d86-4e60-ab70-19ef47d694b9'
+app.config['SECRET_KEY'] = 'your_secret_key_here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
