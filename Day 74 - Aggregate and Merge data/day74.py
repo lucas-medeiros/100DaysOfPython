@@ -99,7 +99,7 @@ sets_by_year['set_num'].head()
 
 """**Challenge**: Show the number of LEGO releases on a line chart using Matplotlib. <br>
 <br>
-Note that the .csv file is from late 2020, so to plot the full calendar years, you will have to exclude some data from your chart. Can you use the slicing techniques covered in Day 21 to avoid plotting the last two years? The same syntax will work on Pandas DataFrames.
+Note that the .csv file is from late 2020, so to plot the full calendar years, you will have to exclude some data from your chart. Can you use the slicing techniques covered in Day 21 - Snake game v2 to avoid plotting the last two years? The same syntax will work on Pandas DataFrames.
 """
 
 plt.plot(sets_by_year.index, sets_by_year.set_num)

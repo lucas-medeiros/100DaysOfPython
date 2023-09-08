@@ -3,7 +3,7 @@
 # @version  1.0
 
 
-# Blog Authentication - Day 69 - Advanced - Blog Capstone Project Part 4 - Adding Users
+# Blog Authentication - Day 69 - Adding users - Advanced - Blog Capstone Project Part 4 - Adding Users
 
 
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm

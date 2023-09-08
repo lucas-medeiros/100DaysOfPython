@@ -3,6 +3,6 @@
 # @version  1.0
 
 
-# Git: Day 70 - Advanced - Git, GitHub and Version Control
+# Git: Day 70 - Version Control - Advanced - Git, GitHub and Version Control
 
 # Bonus: Python Wordle Game
