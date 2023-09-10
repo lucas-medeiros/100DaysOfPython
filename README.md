@@ -1,2 +1,2 @@
 # 100DaysOfPython
-100 small Python Projects for learning
+100 Python Projects for learning
